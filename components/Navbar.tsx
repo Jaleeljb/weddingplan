@@ -79,12 +79,14 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-forest-dark/98 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] overflow-y-auto"
+            style={{ backgroundColor: "#142720" }}
           >
             <div className="flex justify-end p-6">
               <button
                 onClick={() => setOpen(false)}
                 className="text-ivory"
+                style={{ color: "#FAF6EF" }}
                 aria-label="Close menu"
               >
                 <X size={28} />
@@ -96,7 +98,7 @@ export default function Navbar() {
               variants={{
                 visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
               }}
-              className="flex flex-col items-center gap-7 pt-10"
+              className="flex flex-col items-center gap-7 pb-16 pt-10"
             >
               {links.map((link) => (
                 <motion.li
@@ -109,7 +111,8 @@ export default function Navbar() {
                   <a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="font-display text-3xl italic text-ivory hover:text-gold-light transition-colors"
+                    className="font-display text-3xl italic transition-colors hover:text-gold-light"
+                    style={{ color: "#FAF6EF" }}
                   >
                     {link.label}
                   </a>
