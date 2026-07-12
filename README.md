@@ -3,7 +3,12 @@
 A fully responsive, animated single-page site built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Framer Motion** — a stack Vercel supports out of the box with zero configuration.
 
 ## Sections
-Home · About · Services · Venues · Gallery · Packages · Contact — plus a sticky animated nav and footer. (Packages sits directly above Contact by design, so pricing leads straight into the enquiry form.)
+Home · About · Services · Venues · Cuisine · Gallery · Packages · Contact — plus a sticky animated nav and footer. (Packages sits directly above Contact by design, so pricing leads straight into the enquiry form.)
+
+## Regional Wedding Cuisine Section
+`components/Cuisine.tsx` + `data/indiaCuisine.ts` cover all 24 states/UTs in the venue dataset, each with 5 real signature dishes (veg/non-veg tagged), a wedding-feast tradition note, and a diet profile. Filterable by region and state, same UX pattern as Venues.
+
+**Photography honesty:** dishes marked "Real dish photo" link to genuine Wikimedia Commons photography — either of that exact dish (Hyderabadi biryani, Gujarati dhokla, dal baati churma, rosogolla, masala dosa, Kerala sadya) or a real regional-style thali reused honestly across a few neighbouring states with a similar thali tradition (noted in each entry's `sourceNote`). States without that badge use representative stock photography of the cuisine style, not a confirmed photo of that state's actual food — swap in real photography whenever you have it, using the same `StateCuisine` shape.
 
 ## Design
 "Botanical Editorial" identity: deep forest green, ivory, antique gold, and dusty rose; Cormorant Garamond (display serif) paired with Jost (body sans); a hand-drawn vine motif that draws itself in on scroll as the page's signature element.
