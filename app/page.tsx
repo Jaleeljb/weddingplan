@@ -15,9 +15,9 @@ export default function Home() {
       <Hero />
       <About />
       <Services />
-      <Packages />
       <Venues />
       <Gallery />
+      <Packages />
       <Contact />
       <Footer />
     </main>

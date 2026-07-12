@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import Reveal from "./Reveal";
 import VineDivider from "./VineDivider";
-import { venues, regions, formatINR, type Region } from "@/data/indiaVenues";
+import { areas, regions, formatINR, type Region } from "@/data/indiaVenues";
 
 export default function Venues() {
   const [activeRegion, setActiveRegion] = useState<Region | "All">("All");
@@ -23,15 +23,15 @@ export default function Venues() {
   const statesInRegion = useMemo(() => {
     const pool =
       activeRegion === "All"
-        ? venues
-        : venues.filter((v) => v.region === activeRegion);
-    return Array.from(new Set(pool.map((v) => v.state))).sort();
+        ? areas
+        : areas.filter((a) => a.region === activeRegion);
+    return Array.from(new Set(pool.map((a) => a.state))).sort();
   }, [activeRegion]);
 
   const filtered = useMemo(() => {
-    return venues.filter((v) => {
-      const regionMatch = activeRegion === "All" || v.region === activeRegion;
-      const stateMatch = activeState === "All" || v.state === activeState;
+    return areas.filter((a) => {
+      const regionMatch = activeRegion === "All" || a.region === activeRegion;
+      const stateMatch = activeState === "All" || a.state === activeState;
       return regionMatch && stateMatch;
     });
   }, [activeRegion, activeState]);
@@ -40,6 +40,11 @@ export default function Venues() {
     setActiveRegion(region);
     setActiveState("All");
   };
+
+  const totalStates = useMemo(
+    () => new Set(areas.map((a) => a.state)).size,
+    []
+  );
 
   return (
     <section id="venues" className="relative bg-ivory py-28 md:py-36">
@@ -50,8 +55,7 @@ export default function Venues() {
             Explore venues, state by state
           </h2>
           <p className="mt-5 font-body text-charcoal/65">
-            {venues.length} real venues across{" "}
-            {new Set(venues.map((v) => v.state)).size} states — with 2026
+            {areas.length} areas across {totalStates} states — with 2026
             market-rate pricing so you can shortlist by budget, not just by
             looks.
           </p>
@@ -112,15 +116,22 @@ export default function Venues() {
           </div>
         </Reveal>
 
+        {activeState !== "All" && (
+          <p className="mt-4 text-center font-body text-xs text-charcoal/45">
+            {filtered.length} area{filtered.length === 1 ? "" : "s"} in{" "}
+            {activeState}
+          </p>
+        )}
+
         {/* Venue grid */}
         <motion.div
           layout
-          className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           <AnimatePresence mode="popLayout">
-            {filtered.map((venue) => (
+            {filtered.map((area) => (
               <motion.div
-                key={venue.id}
+                key={area.id}
                 layout
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -128,19 +139,19 @@ export default function Venues() {
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className="group relative flex flex-col overflow-hidden rounded-3xl border border-line/70 bg-white shadow-card card-lift"
               >
-                <div className="relative h-56 w-full overflow-hidden">
+                <div className="relative h-52 w-full overflow-hidden">
                   <Image
-                    src={venue.image}
-                    alt={venue.name}
+                    src={area.image}
+                    alt={area.area}
                     fill
                     unoptimized
                     className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-dark/70 via-transparent to-transparent" />
                   <span className="absolute left-4 top-4 rounded-full bg-ivory/90 px-3 py-1 font-body text-[10px] uppercase tracking-wider text-forest">
-                    {venue.category}
+                    {area.tier}
                   </span>
-                  {venue.verified && (
+                  {area.verified && (
                     <span className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-forest/90 px-2.5 py-1 font-body text-[10px] uppercase tracking-wider text-ivory">
                       <BadgeCheck size={12} />
                       Verified pricing
@@ -149,17 +160,27 @@ export default function Venues() {
                   <div className="absolute inset-x-0 bottom-0 p-4">
                     <p className="flex items-center gap-1.5 font-body text-xs text-ivory/85">
                       <MapPin size={12} />
-                      {venue.city}, {venue.state}
+                      {area.state}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="font-display text-2xl text-forest">
-                    {venue.name}
+                    {area.area}
                   </h3>
-                  <p className="mt-2 font-body text-sm leading-relaxed text-charcoal/60">
-                    {venue.highlight}
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {area.venueTypes.map((vt) => (
+                      <span
+                        key={vt}
+                        className="rounded-full bg-forest/5 px-2.5 py-0.5 font-body text-[11px] text-forest/70"
+                      >
+                        {vt}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="mt-3 font-body text-sm leading-relaxed text-charcoal/60">
+                    {area.highlight}
                   </p>
 
                   <div className="mt-5 space-y-2.5 border-t border-line/70 pt-5">
@@ -169,7 +190,7 @@ export default function Venues() {
                         Per plate
                       </span>
                       <span className="font-medium text-forest">
-                        ₹{formatINR(venue.plateMin)} – ₹{formatINR(venue.plateMax)}
+                        ₹{formatINR(area.plateMin)} – ₹{formatINR(area.plateMax)}
                       </span>
                     </div>
                     <div className="flex items-center justify-between font-body text-sm">
@@ -178,11 +199,11 @@ export default function Venues() {
                         Capacity
                       </span>
                       <span className="font-medium text-forest">
-                        {venue.capacity}
+                        {area.capacity}
                       </span>
                     </div>
                     <p className="pt-1 font-body text-xs text-charcoal/45">
-                      Est. package: {venue.packageEstimate}
+                      Est. package: {area.packageEstimate}
                     </p>
                   </div>
 
@@ -200,7 +221,7 @@ export default function Venues() {
 
         {filtered.length === 0 && (
           <p className="mt-16 text-center font-body text-charcoal/50">
-            No venues in this state yet — try another region.
+            No areas in this state yet — try another region.
           </p>
         )}
       </div>
@@ -245,15 +266,19 @@ export default function Venues() {
                   for this industry, so we don&rsquo;t pretend to have one.
                 </p>
                 <p>
-                  What you&rsquo;re seeing instead: per-plate and package
-                  ranges compiled from 2026 wedding-industry pricing research
-                  for each venue&rsquo;s category and city. Venues marked{" "}
+                  Instead, every area below is assigned a market{" "}
+                  <strong>tier</strong> (Metro, State Capital, Heritage
+                  Destination, Hill Resort, Beach &amp; Coastal, Kerala
+                  Backwater, Pilgrimage Town, or Tier-2 Town) and priced from
+                  2026 wedding-industry rate benchmarks for that tier. A
+                  handful of areas also name a real flagship property; those
+                  marked{" "}
                   <span className="inline-flex items-center gap-1 rounded-full bg-forest/10 px-2 py-0.5 text-xs text-forest">
                     <BadgeCheck size={11} /> Verified pricing
                   </span>{" "}
-                  have been cross-checked against multiple published sources
-                  for that specific property; others are category-level
-                  estimates for their region and tier.
+                  have that specific venue&rsquo;s numbers cross-checked
+                  against multiple published 2026 sources; everything else is
+                  a category-level estimate.
                 </p>
                 <p>
                   Treat these as planning ranges, not quotes — always confirm
