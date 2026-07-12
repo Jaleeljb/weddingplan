@@ -30,6 +30,16 @@ vercel
 2. Go to [vercel.com/new](https://vercel.com/new) and import the repo.
 3. Framework preset "Next.js" is auto-detected — click **Deploy**. No environment variables are required.
 
+## India Venues Section
+The Venues section is now a state-by-state directory of real Indian wedding venues (`data/indiaVenues.ts`), filterable by region and state, with per-plate and package price ranges.
+
+**Important — read before treating this as a live feed:** there is no public real-time pricing API for Indian wedding venues (vendors quote privately by date/season/menu). So instead of faking a live feed:
+- 3 flagship venues (Rambagh Palace, Taj Falaknuma Palace, Taj Mahal Palace Mumbai) are marked `verified: true` — their photos are real building photography from Wikimedia Commons, and pricing is cross-checked against multiple published 2026 sources for that specific property.
+- The other 21 venues carry `verified: false` — real venue names/cities, but category-level 2026 market-rate pricing estimates (see `sourceNote` on each entry), and representative regional stock photography rather than the property's own marketing photos.
+- A "How we source this data" link in the UI opens a plain-language methodology modal so visitors aren't misled.
+
+**To go fully live**, replace `data/indiaVenues.ts` with a fetch to a real vendor API (e.g. a WedMeGood/Mandap partner feed if you have one) or your own CMS, keeping the same `IndiaVenue` shape so the UI needs no changes.
+
 ## Customize
 
 - **Copy & pricing**: edit the arrays at the top of each component in `/components` (`Services.tsx`, `Packages.tsx`, `Venues.tsx`, `Gallery.tsx`).
