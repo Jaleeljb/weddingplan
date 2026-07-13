@@ -8,7 +8,7 @@ import Reveal from "./Reveal";
 
 const photos = [
   {
-    src: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1200&auto=format&fit=crop",
     alt: "Bride and groom under a floral arch",
     tall: true,
   },
@@ -18,12 +18,12 @@ const photos = [
     tall: false,
   },
   {
-    src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1521543387316-e9c4934a4bf5?q=80&w=1200&auto=format&fit=crop",
     alt: "Couple laughing together",
     tall: false,
   },
   {
-    src: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=1200&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1200&auto=format&fit=crop",
     alt: "Bridal bouquet close up",
     tall: true,
   },
