@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MapPin, BadgeCheck, Info, X, Leaf, Drumstick, ChevronDown, ChevronUp } from "lucide-react";
 import Reveal from "./Reveal";
 import VineDivider from "./VineDivider";
+import SaveButton from "./SaveButton";
 import { cuisines } from "@/data/indiaCuisine";
 import { regions, type Region } from "@/data/indiaVenues";
 
@@ -141,12 +142,15 @@ export default function Cuisine() {
                     className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-dark/70 via-transparent to-transparent" />
-                  {c.verified && (
-                    <span className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-forest/90 px-2.5 py-1 font-body text-[10px] uppercase tracking-wider text-ivory">
-                      <BadgeCheck size={12} />
-                      Real dish photo
-                    </span>
-                  )}
+                  <div className="absolute right-4 top-4 flex flex-col items-end gap-2">
+                    <SaveButton type="cuisine" id={c.id} variant="dark" />
+                    {c.verified && (
+                      <span className="flex items-center gap-1 rounded-full bg-forest/90 px-2.5 py-1 font-body text-[10px] uppercase tracking-wider text-ivory">
+                        <BadgeCheck size={12} />
+                        Real dish photo
+                      </span>
+                    )}
+                  </div>
                   <div className="absolute inset-x-0 bottom-0 p-4">
                     <p className="flex items-center gap-1.5 font-body text-xs text-ivory/85">
                       <MapPin size={12} />

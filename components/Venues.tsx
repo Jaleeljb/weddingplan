@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ChevronUp, MapPin, Users2, UtensilsCrossed, BadgeCheck, Info, X } from "lucide-react";
 import Reveal from "./Reveal";
 import VineDivider from "./VineDivider";
+import SaveButton from "./SaveButton";
 import { areas, regions, formatINR, type Region } from "@/data/indiaVenues";
 
 const INITIAL_COUNT = 6;
@@ -156,12 +157,15 @@ export default function Venues() {
                   <span className="absolute left-4 top-4 rounded-full bg-ivory/90 px-3 py-1 font-body text-[10px] uppercase tracking-wider text-forest">
                     {area.tier}
                   </span>
-                  {area.verified && (
-                    <span className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-forest/90 px-2.5 py-1 font-body text-[10px] uppercase tracking-wider text-ivory">
-                      <BadgeCheck size={12} />
-                      Verified pricing
-                    </span>
-                  )}
+                  <div className="absolute right-4 top-4 flex flex-col items-end gap-2">
+                    <SaveButton type="venue" id={area.id} variant="dark" />
+                    {area.verified && (
+                      <span className="flex items-center gap-1 rounded-full bg-forest/90 px-2.5 py-1 font-body text-[10px] uppercase tracking-wider text-ivory">
+                        <BadgeCheck size={12} />
+                        Verified pricing
+                      </span>
+                    )}
+                  </div>
                   <div className="absolute inset-x-0 bottom-0 p-4">
                     <p className="flex items-center gap-1.5 font-body text-xs text-ivory/85">
                       <MapPin size={12} />

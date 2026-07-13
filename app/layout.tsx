@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/context/AuthContext";
+import AuthModal from "@/components/AuthModal";
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],
@@ -36,7 +38,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
-      <body className="font-body antialiased">{children}</body>
+      <body className="font-body antialiased">
+        <AuthProvider>
+          {children}
+          <AuthModal />
+        </AuthProvider>
+      </body>
     </html>
   );
 }

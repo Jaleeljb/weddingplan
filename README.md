@@ -66,6 +66,13 @@ The Venues section is now a directory of **120 real areas across 24 states/UTs**
 
 **To go fully live**, replace `data/indiaVenues.ts` with a fetch to a real vendor API (e.g. a WedMeGood/Mandap partner feed if you have one) or your own CMS, keeping the same `IndiaArea` shape so the UI needs no changes.
 
+## Customer Accounts (Mobile Number + OTP)
+Visitors can create an account with just their mobile number — `components/AuthModal.tsx` + `context/AuthContext.tsx` — and save items from **Venues**, **Cuisine**, and **Packages** to a personal dashboard at `/dashboard` (tap the heart icon on any card). The dashboard also has a **Settings** tab where a signed-in user can delete their account at any time, permanently removing their profile and everything they've saved.
+
+**Important — this is a working demo, not wired to a real SMS gateway:** there's no backend/database in this project, so the whole flow (send OTP, verify, session, saved items, account deletion) is simulated in the browser — a `localStorage` "users table" stands in for a database, and a module-level cache stands in for a server-side OTP store. When you request an OTP, it's shown right in the modal (labelled "Demo mode") and logged to the browser console, since there's nowhere to actually send an SMS.
+
+**To go fully live**, swap the `sendOtp` / `verifyOtp` functions in `context/AuthContext.tsx` for calls to a real server endpoint backed by an SMS/OTP provider — options widely used for Indian numbers include Firebase Phone Auth, Twilio Verify, or MSG91/2Factor — and swap the `localStorage` tables for a real database. Nothing else needs to change: the modal, the save buttons on every card, and the dashboard all talk to this context through the same interface.
+
 ## Customize
 
 - **Copy & pricing**: edit the arrays at the top of each component in `/components` (`Services.tsx`, `Packages.tsx`, `Venues.tsx`, `Gallery.tsx`).

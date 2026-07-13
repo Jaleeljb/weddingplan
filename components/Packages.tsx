@@ -2,50 +2,8 @@
 
 import { Check } from "lucide-react";
 import Reveal from "./Reveal";
-
-const packages = [
-  {
-    name: "The Intimate",
-    tagline: "For elopements & small gatherings",
-    price: "$3,200",
-    featured: false,
-    includes: [
-      "Up to 40 guests",
-      "Day-of coordination",
-      "Vendor recommendations",
-      "1 planning consultation",
-      "Ceremony timeline design",
-    ],
-  },
-  {
-    name: "The Classic",
-    tagline: "Our most-booked, full-service plan",
-    price: "$7,800",
-    featured: true,
-    includes: [
-      "Up to 150 guests",
-      "Full planning, start to finish",
-      "In-house design & styling",
-      "Unlimited planning consultations",
-      "Vendor booking & management",
-      "Rehearsal coordination",
-    ],
-  },
-  {
-    name: "The Grand",
-    tagline: "For multi-day & destination weddings",
-    price: "$14,500",
-    featured: false,
-    includes: [
-      "150+ guests, multi-day events",
-      "Dedicated lead planner & assistant",
-      "Custom floral & decor design",
-      "Guest travel coordination",
-      "On-site team for full weekend",
-      "Welcome party & farewell brunch",
-    ],
-  },
-];
+import SaveButton from "./SaveButton";
+import { packages } from "@/data/packages";
 
 export default function Packages() {
   return (
@@ -64,7 +22,7 @@ export default function Packages() {
 
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3">
           {packages.map((pkg, i) => (
-            <Reveal key={pkg.name} delay={i * 0.12}>
+            <Reveal key={pkg.id} delay={i * 0.12}>
               <div
                 className={`group relative flex h-full flex-col rounded-[1.75rem] p-8 transition-all duration-500 hover:-translate-y-3 ${
                   pkg.featured
@@ -72,6 +30,12 @@ export default function Packages() {
                     : "border border-ivory/15 bg-forest-light/60 hover:border-gold/50"
                 }`}
               >
+                <SaveButton
+                  type="package"
+                  id={pkg.id}
+                  variant="dark"
+                  className="absolute right-6 top-6"
+                />
                 {pkg.featured && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-forest px-4 py-1 font-body text-[11px] uppercase tracking-widest text-ivory">
                     Most Loved
