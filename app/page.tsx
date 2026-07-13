@@ -14,12 +14,12 @@ export default function Home() {
     <main className="overflow-x-hidden">
       <Navbar />
       <Hero />
-      <About />
       <Services />
       <Venues />
       <Cuisine />
       <Gallery />
       <Packages />
+      <About />
       <Contact />
       <Footer />
     </main>

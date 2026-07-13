@@ -15,10 +15,12 @@
 //   Ambala) have been cross-checked against multiple independent 2026
 //   sources for that specific property and override the tier default
 //   pricing with real numbers for that venue.
-// - `image` uses representative regional/category photography (Wikimedia
-//   Commons for the 4 verified flagships, Unsplash elsewhere) — not each
-//   individual area's own venue photography. Swap in real photos/an actual
-//   vendor feed when you have one; the `Area` shape below won't need to change.
+// - `image` is only set for the handful of areas with a genuine, unique
+//   photo of that exact property (Jaipur/Rambagh Palace, Hyderabad/Taj
+//   Falaknuma Palace, Mumbai/Taj Mahal Palace — all Wikimedia Commons).
+//   Every other area has no `image` and instead renders a unique generated
+//   visual (see components/AreaVisual.tsx) — this app never shows the same
+//   image twice, so no shared "tier" stock photo is used across areas.
 // -------------------------------------------------------------------------
 
 export type Region =
@@ -44,7 +46,6 @@ interface TierInfo {
   plateMax: number;
   capacity: string;
   packageEstimate: string;
-  image: string;
 }
 
 const TIER_INFO: Record<Tier, TierInfo> = {
@@ -53,64 +54,48 @@ const TIER_INFO: Record<Tier, TierInfo> = {
     plateMax: 7000,
     capacity: "150 – 800 guests",
     packageEstimate: "₹28L – ₹95L for 200 guests",
-    image:
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200&auto=format&fit=crop",
   },
   "State Capital": {
     plateMin: 1500,
     plateMax: 4000,
     capacity: "150 – 600 guests",
     packageEstimate: "₹15L – ₹42L for 200 guests",
-    image:
-      "https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?q=80&w=1200&auto=format&fit=crop",
   },
   "Heritage Destination": {
     plateMin: 3000,
     plateMax: 9000,
     capacity: "100 – 500 guests",
     packageEstimate: "₹35L – ₹1.2Cr for 200 guests",
-    image:
-      "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=1200&auto=format&fit=crop",
   },
   "Hill Resort": {
     plateMin: 1800,
     plateMax: 4500,
     capacity: "80 – 350 guests",
     packageEstimate: "₹20L – ₹55L for 150 guests",
-    image:
-      "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=1200&auto=format&fit=crop",
   },
   "Beach & Coastal": {
     plateMin: 1500,
     plateMax: 3500,
     capacity: "100 – 400 guests",
     packageEstimate: "₹18L – ₹48L for 200 guests",
-    image:
-      "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1200&auto=format&fit=crop",
   },
   "Kerala Backwater": {
     plateMin: 1200,
     plateMax: 2800,
     capacity: "100 – 350 guests",
     packageEstimate: "₹14L – ₹34L for 200 guests",
-    image:
-      "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1200&auto=format&fit=crop",
   },
   "Pilgrimage Town": {
     plateMin: 800,
     plateMax: 2000,
     capacity: "100 – 600 guests",
     packageEstimate: "₹8L – ₹20L for 200 guests",
-    image:
-      "https://images.unsplash.com/photo-1509927083803-4bd519298ac4?q=80&w=1200&auto=format&fit=crop",
   },
   "Tier-2 Town": {
     plateMin: 900,
     plateMax: 2200,
     capacity: "150 – 500 guests",
     packageEstimate: "₹9L – ₹24L for 200 guests",
-    image:
-      "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=1200&auto=format&fit=crop",
   },
 };
 
@@ -137,7 +122,7 @@ export interface IndiaArea {
   plateMax: number;
   capacity: string;
   packageEstimate: string;
-  image: string;
+  image?: string;
   verified: boolean;
   sourceNote: string;
   updated: string;
@@ -168,7 +153,11 @@ function buildArea(input: AreaInput): IndiaArea {
     plateMax: f?.plateMax ?? t.plateMax,
     capacity: f?.capacity ?? t.capacity,
     packageEstimate: f?.packageEstimate ?? t.packageEstimate,
-    image: f?.image ?? t.image,
+    // Only set when we have a genuine, unique photo for this exact area —
+    // never a shared "tier" stock photo. Areas without one render a unique
+    // generated visual instead (see AreaVisual.tsx) so no two area cards
+    // ever show the same image.
+    image: f?.image,
     verified: f?.verified ?? false,
     sourceNote:
       f?.sourceNote ??
