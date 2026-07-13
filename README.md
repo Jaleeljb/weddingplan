@@ -35,12 +35,6 @@ vercel
 2. Go to [vercel.com/new](https://vercel.com/new) and import the repo.
 3. Framework preset "Next.js" is auto-detected — click **Deploy**. No environment variables are required.
 
-## No Duplicate Images
-Every image URL in this app — across Hero, About, Venues, Cuisine, Gallery — is used exactly once. This was a deliberate constraint, not an accident:
-- **Venues (120 areas):** only 3 areas (Jaipur, Hyderabad, Mumbai) have a genuine confirmed photo of that exact property. Every other area has no `image` in the data and instead renders through `components/AreaVisual.tsx`, which deterministically generates a unique on-brand SVG (palette + pattern + monogram, seeded from the area's id) — so all 117 remaining area cards look distinct and none falsely implies it's a photo of that specific venue.
-- **Cuisine (24 states):** 17 states use real, distinct Wikimedia Commons dish/thali photography; the remaining 7 use distinct representative stock photos (never shared between states).
-- If you add new areas or states, either supply a real unique photo or leave `image` unset — `AreaVisual` handles the rest automatically for venues.
-
 ## India Venues Section
 The Venues section is now a directory of **120 real areas across 24 states/UTs** (5 per state) — `data/indiaVenues.ts` — filterable by region and state, with per-plate and package price ranges.
 

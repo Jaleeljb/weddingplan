@@ -105,9 +105,9 @@ const raw = ([
     weddingFeast:
       "Haryanvi weddings lean on ghee-heavy dairy dishes and a generous meethe chawal to close the meal.",
     image:
-      "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=1200&auto=format&fit=crop",
-    verified: false,
-    sourceNote: "Representative regional food photography, 2026.",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional_North_Indian_Thali.jpg",
+    verified: true,
+    sourceNote: "Real Wikimedia Commons North Indian thali photo, used as regional-style reference (not Haryana-specific).",
   },
   {
     state: "Goa",
@@ -159,9 +159,9 @@ const raw = ([
     weddingFeast:
       "Karnataka wedding banana-leaf meals are close cousins of Kerala's sadya, with Mysore Pak served as the signature sweet.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Mysore_pak.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Masala_dosa_01.jpg",
     verified: true,
-    sourceNote: "Real Wikimedia Commons photo of Mysore Pak, which originated in the royal kitchens of the Kingdom of Mysore, Karnataka.",
+    sourceNote: "Real Wikimedia Commons photo of masala dosa — Udupi, Karnataka, is widely credited as the dish's home.",
   },
   {
     state: "Tamil Nadu",
@@ -195,9 +195,9 @@ const raw = ([
     weddingFeast:
       "Delhi wedding caterers typically run live counters — chaat, kebabs, and a Mughlai main course — alongside a full vegetarian spread.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_makhani.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional_North_Indian_Thali.jpg",
     verified: true,
-    sourceNote: "Real Wikimedia Commons photo of butter chicken (murgh makhani), invented in Delhi.",
+    sourceNote: "Real Wikimedia Commons North Indian thali photo, used as regional-style reference (not Delhi-specific).",
   },
   {
     state: "Punjab",
@@ -301,11 +301,11 @@ const raw = ([
       { name: "Jhangora Kheer", veg: true },
     ],
     weddingFeast:
-      "Pahari wedding feasts favour millet and mountain-grown pulses, closing with a bal mithai and jhangora kheer dessert course.",
+      "Pahari wedding feasts favour millet and mountain-grown pulses, closing with bal mithai and jhangora kheer.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Bal_mithai.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional_North_Indian_Thali.jpg",
     verified: true,
-    sourceNote: "Real Wikimedia Commons photo of bal mithai, a khoya sweet from Almora, Uttarakhand.",
+    sourceNote: "Real Wikimedia Commons North Indian thali photo, used as regional-style reference (not Uttarakhand-specific).",
   },
   {
     state: "Madhya Pradesh",
@@ -321,9 +321,9 @@ const raw = ([
     weddingFeast:
       "Central Indian weddings often serve dal bafla — a softer cousin of Rajasthan's baati — alongside a malpua dessert table.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Indian_pancakes-malpua.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional_North_Indian_Thali.jpg",
     verified: true,
-    sourceNote: "Real Wikimedia Commons photo of malpua, a festive dessert served across Central and North India including Madhya Pradesh.",
+    sourceNote: "Real Wikimedia Commons North Indian thali photo, used as regional-style reference (not MP-specific).",
   },
   {
     state: "Andhra Pradesh",
@@ -355,11 +355,11 @@ const raw = ([
       { name: "Odisha Rasagola", veg: true },
     ],
     weddingFeast:
-      "Odisha holds its own GI status for rasagola alongside West Bengal, and its chhena poda — burnt cheesecake — is an equally iconic wedding-table sweet.",
+      "Odisha holds its own GI status for rasagola alongside West Bengal — both states claim, and serve, this wedding-table classic.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Chhena_Poda-Puri-Odisha-IMG_1323.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Rosgulla_-_Famous_Dessert_of_Kolkata.jpg",
     verified: true,
-    sourceNote: "Real Wikimedia Commons photo of chhena poda, Odisha's signature caramelised-cheese dessert.",
+    sourceNote: "Real Wikimedia Commons rasagola/rosogolla photo — Odisha and West Bengal both hold GI status for their own variant of this sweet.",
   },
   {
     state: "Assam",
@@ -393,9 +393,9 @@ const raw = ([
     weddingFeast:
       "Litti chokha, roasted wheat balls with mashed vegetables, is a Bihar wedding-menu staple alongside thekua sweets.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Litti_Chokha.jpg",
-    verified: true,
-    sourceNote: "Real Wikimedia Commons photo of litti chokha, Bihar's signature dish.",
+      "https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=1200&auto=format&fit=crop",
+    verified: false,
+    sourceNote: "Representative regional food photography, 2026.",
   },
   {
     state: "Jammu & Kashmir",
@@ -411,9 +411,9 @@ const raw = ([
     weddingFeast:
       "The Wazwan — up to 36 courses served on a shared trami platter — is the traditional Kashmiri wedding feast.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Rogan_Josh_Kashmiri.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional_North_Indian_Thali.jpg",
     verified: true,
-    sourceNote: "Real Wikimedia Commons photo of rogan josh, a centrepiece dish of the Kashmiri Wazwan feast.",
+    sourceNote: "Real Wikimedia Commons North Indian thali photo, used as regional-style reference (not Kashmir-specific — a true Wazwan trami looks quite different).",
   },
   {
     state: "Chhattisgarh",
@@ -429,9 +429,9 @@ const raw = ([
     weddingFeast:
       "Chhattisgarhi weddings favour steamed rice-flour dishes like fara and bafauri alongside a sweet khurma course.",
     image:
-      "https://images.unsplash.com/photo-1596797882317-3ce5f16d0e10?q=80&w=1200&auto=format&fit=crop",
-    verified: false,
-    sourceNote: "Representative regional food photography, 2026.",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional_North_Indian_Thali.jpg",
+    verified: true,
+    sourceNote: "Real Wikimedia Commons North Indian thali photo, used as regional-style reference (not Chhattisgarh-specific).",
   },
   {
     state: "Sikkim",
@@ -465,9 +465,9 @@ const raw = ([
     weddingFeast:
       "Jharkhand shares Bihar's litti chokha tradition, with tribal-region specialities like rugra appearing in some communities' wedding menus.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Litti_chokha_well_known_bihar_food.jpg",
-    verified: true,
-    sourceNote: "Real Wikimedia Commons photo of litti chokha, a dish shared by Bihar and Jharkhand's Bhojpuri/Magadh-belt cuisine.",
+      "https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=1200&auto=format&fit=crop",
+    verified: false,
+    sourceNote: "Representative regional food photography, 2026.",
   },
 ] as Omit<StateCuisine, "id">[]).map((c) => ({
   ...c,
