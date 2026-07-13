@@ -3,22 +3,18 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  MapPin,
-  Users2,
-  UtensilsCrossed,
-  BadgeCheck,
-  Info,
-  X,
-} from "lucide-react";
+import { ChevronDown, ChevronUp, MapPin, Users2, UtensilsCrossed, BadgeCheck, Info, X } from "lucide-react";
 import Reveal from "./Reveal";
 import VineDivider from "./VineDivider";
 import { areas, regions, formatINR, type Region } from "@/data/indiaVenues";
+
+const INITIAL_COUNT = 6;
 
 export default function Venues() {
   const [activeRegion, setActiveRegion] = useState<Region | "All">("All");
   const [activeState, setActiveState] = useState<string>("All");
   const [showMethodology, setShowMethodology] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const statesInRegion = useMemo(() => {
     const pool =
@@ -36,9 +32,18 @@ export default function Venues() {
     });
   }, [activeRegion, activeState]);
 
+  const visible = showAll ? filtered : filtered.slice(0, INITIAL_COUNT);
+  const remaining = filtered.length - visible.length;
+
   const handleRegionSelect = (region: Region | "All") => {
     setActiveRegion(region);
     setActiveState("All");
+    setShowAll(false);
+  };
+
+  const handleStateSelect = (state: string) => {
+    setActiveState(state);
+    setShowAll(false);
   };
 
   const totalStates = useMemo(
@@ -91,7 +96,7 @@ export default function Venues() {
         <Reveal delay={0.15}>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
             <button
-              onClick={() => setActiveState("All")}
+              onClick={() => handleStateSelect("All")}
               className={`rounded-full px-3.5 py-1.5 font-body text-xs uppercase tracking-wide transition-all duration-300 ${
                 activeState === "All"
                   ? "bg-gold/20 text-gold-dark"
@@ -103,7 +108,7 @@ export default function Venues() {
             {statesInRegion.map((state) => (
               <button
                 key={state}
-                onClick={() => setActiveState(state)}
+                onClick={() => handleStateSelect(state)}
                 className={`rounded-full px-3.5 py-1.5 font-body text-xs uppercase tracking-wide transition-all duration-300 ${
                   activeState === state
                     ? "bg-gold/20 text-gold-dark"
@@ -129,7 +134,7 @@ export default function Venues() {
           className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           <AnimatePresence mode="popLayout">
-            {filtered.map((area) => (
+            {visible.map((area) => (
               <motion.div
                 key={area.id}
                 layout
@@ -223,6 +228,33 @@ export default function Venues() {
           <p className="mt-16 text-center font-body text-charcoal/50">
             No areas in this state yet — try another region.
           </p>
+        )}
+
+        {filtered.length > INITIAL_COUNT && (
+          <div className="mt-12 flex justify-center">
+            <button
+              onClick={() => setShowAll((s) => !s)}
+              className="group inline-flex items-center gap-2 rounded-full border border-forest/25 bg-transparent px-8 py-3.5 font-body text-sm tracking-wide text-forest transition-all duration-500 hover:border-forest hover:bg-forest hover:text-ivory"
+            >
+              {showAll ? (
+                <>
+                  Show Less
+                  <ChevronUp
+                    size={16}
+                    className="transition-transform duration-300 group-hover:-translate-y-0.5"
+                  />
+                </>
+              ) : (
+                <>
+                  Show {remaining} More Area{remaining === 1 ? "" : "s"}
+                  <ChevronDown
+                    size={16}
+                    className="transition-transform duration-300 group-hover:translate-y-0.5"
+                  />
+                </>
+              )}
+            </button>
+          </div>
         )}
       </div>
 

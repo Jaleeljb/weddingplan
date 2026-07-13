@@ -3,16 +3,19 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { MapPin, BadgeCheck, Info, X, Leaf, Drumstick } from "lucide-react";
+import { MapPin, BadgeCheck, Info, X, Leaf, Drumstick, ChevronDown, ChevronUp } from "lucide-react";
 import Reveal from "./Reveal";
 import VineDivider from "./VineDivider";
 import { cuisines } from "@/data/indiaCuisine";
 import { regions, type Region } from "@/data/indiaVenues";
 
+const INITIAL_COUNT = 6;
+
 export default function Cuisine() {
   const [activeRegion, setActiveRegion] = useState<Region | "All">("All");
   const [activeState, setActiveState] = useState<string>("All");
   const [showMethodology, setShowMethodology] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const statesInRegion = useMemo(() => {
     const pool =
@@ -30,9 +33,18 @@ export default function Cuisine() {
     });
   }, [activeRegion, activeState]);
 
+  const visible = showAll ? filtered : filtered.slice(0, INITIAL_COUNT);
+  const remaining = filtered.length - visible.length;
+
   const handleRegionSelect = (region: Region | "All") => {
     setActiveRegion(region);
     setActiveState("All");
+    setShowAll(false);
+  };
+
+  const handleStateSelect = (state: string) => {
+    setActiveState(state);
+    setShowAll(false);
   };
 
   return (
@@ -79,7 +91,7 @@ export default function Cuisine() {
         <Reveal delay={0.15}>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
             <button
-              onClick={() => setActiveState("All")}
+              onClick={() => handleStateSelect("All")}
               className={`rounded-full px-3.5 py-1.5 font-body text-xs uppercase tracking-wide transition-all duration-300 ${
                 activeState === "All"
                   ? "bg-gold/20 text-gold-dark"
@@ -91,7 +103,7 @@ export default function Cuisine() {
             {statesInRegion.map((state) => (
               <button
                 key={state}
-                onClick={() => setActiveState(state)}
+                onClick={() => handleStateSelect(state)}
                 className={`rounded-full px-3.5 py-1.5 font-body text-xs uppercase tracking-wide transition-all duration-300 ${
                   activeState === state
                     ? "bg-gold/20 text-gold-dark"
@@ -110,7 +122,7 @@ export default function Cuisine() {
           className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           <AnimatePresence mode="popLayout">
-            {filtered.map((c) => (
+            {visible.map((c) => (
               <motion.div
                 key={c.id}
                 layout
@@ -175,6 +187,33 @@ export default function Cuisine() {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {filtered.length > INITIAL_COUNT && (
+          <div className="mt-12 flex justify-center">
+            <button
+              onClick={() => setShowAll((s) => !s)}
+              className="group inline-flex items-center gap-2 rounded-full border border-forest/25 bg-transparent px-8 py-3.5 font-body text-sm tracking-wide text-forest transition-all duration-500 hover:border-forest hover:bg-forest hover:text-ivory"
+            >
+              {showAll ? (
+                <>
+                  Show Less
+                  <ChevronUp
+                    size={16}
+                    className="transition-transform duration-300 group-hover:-translate-y-0.5"
+                  />
+                </>
+              ) : (
+                <>
+                  Show {remaining} More State{remaining === 1 ? "" : "s"}
+                  <ChevronDown
+                    size={16}
+                    className="transition-transform duration-300 group-hover:translate-y-0.5"
+                  />
+                </>
+              )}
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="mt-20">
