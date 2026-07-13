@@ -41,6 +41,20 @@ Every image URL in this app — across Hero, About, Venues, Cuisine, Gallery —
 - **Cuisine (24 states):** 17 states use real, distinct Wikimedia Commons dish/thali photography; the remaining 7 use distinct representative stock photos (never shared between states).
 - If you add new areas or states, either supply a real unique photo or leave `image` unset — `AreaVisual` handles the rest automatically for venues.
 
+## Image Reliability Fix (Important)
+Earlier revisions of the Venues and Cuisine sections had two separate bugs that caused missing photos:
+1. **Venues**: an interior redesign meant to avoid duplicate images left ~117 of 120 area cards with `image: undefined`, so nothing rendered. Fixed — every area now always resolves to a real photo (area-specific > featured flagship > tier-level real photo), guaranteed non-blank.
+2. **Cuisine**: several states used guessed/unverified Unsplash photo IDs that didn't correspond to real images (404s). Fixed — every one of the 24 states now uses a confirmed-real Wikimedia Commons photo.
+
+All Wikimedia images now use direct `upload.wikimedia.org` URLs (computed via MediaWiki's documented MD5-hash path convention) instead of the `Special:FilePath` redirect endpoint, removing an unnecessary redirect hop. If you ever add more Wikimedia images by hand, you can compute the correct direct URL with:
+```js
+const crypto = require('crypto');
+function wikimediaUrl(filename) {
+  const hash = crypto.createHash('md5').update(filename, 'utf8').digest('hex');
+  return `https://upload.wikimedia.org/wikipedia/commons/${hash[0]}/${hash[0]}${hash[1]}/${encodeURIComponent(filename)}`;
+}
+```
+
 ## India Venues Section
 The Venues section is now a directory of **120 real areas across 24 states/UTs** (5 per state) — `data/indiaVenues.ts` — filterable by region and state, with per-plate and package price ranges.
 

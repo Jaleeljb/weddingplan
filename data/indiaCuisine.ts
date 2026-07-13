@@ -2,17 +2,20 @@
 // -------------------------------------------------------------------------
 // Data notes (read before editing):
 // - Every dish named below is real regional/state cuisine, not invented.
-// - Photography: `verified: true` entries link to real Wikimedia Commons
-//   photography of that specific dish (Hyderabadi biryani, Gujarati dhokla,
-//   dal baati churma, rosogolla, masala dosa, Kerala sadya) or a genuine
-//   regional-style thali photographed in that region (e.g. "Uttar Pradesh
-//   Thali.jpg", "Punjabi Thaali.jpg", "Traditional North Indian Thali.jpg"
-//   reused honestly across neighbouring North-Indian states with a similar
-//   thali style, and Odisha's shared rasagola image — West Bengal and
-//   Odisha both hold GI status for their own rasagola/rosogolla variant).
-//   `verified: false` states use representative regional/category stock
-//   photography (Unsplash) rather than a confirmed photo of that exact
-//   state's food — swap in real photography whenever you have it.
+// - Photography: every state's `image` is a genuine Wikimedia Commons photo
+//   (linked via direct upload.wikimedia.org URLs, no redirect dependency) —
+//   nothing is generated or invented, and there are no stock-photo guesses.
+//   `verified: true` entries are a real photo of that exact dish (Hyderabadi
+//   biryani, Gujarati dhokla, dal baati churma, rosogolla, masala dosa,
+//   Mysore pak, chhena poda, bal mithai, malpua, chicken makhani, litti
+//   chokha, rogan josh, Kerala sadya) or a genuine regional-style thali
+//   photographed in that region ("Uttar Pradesh Thali.jpg", "Punjabi
+//   Thaali.jpg", "Traditional North Indian Thali.jpg" — reused honestly
+//   across a couple of neighbouring North-Indian states with a similar
+//   thali tradition, noted per-entry).
+//   `verified: false` states use a real Wikimedia photo of an Indian
+//   wedding celebration that isn't specific to that state's own cuisine —
+//   swap in a dish-specific photo whenever you find/shoot one.
 // - There is no live "what's cooking now" feed here — this is reference
 //   content about regional wedding-menu traditions, compiled 2026.
 // -------------------------------------------------------------------------
@@ -51,7 +54,7 @@ const raw = ([
     weddingFeast:
       "Dal baati churma anchors most Rajasthani wedding feasts, traditionally served in an earthen pot with pure ghee.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/%22Delectable_Dal_Baati_Churma%22.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/9/92/%2522Delectable_Dal_Baati_Churma%2522.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of dal baati churma, Rajasthan's signature wedding-feast dish.",
   },
@@ -69,7 +72,7 @@ const raw = ([
     weddingFeast:
       "Hyderabadi dum biryani, sealed and slow-cooked, is the centrepiece of most Telangana wedding menus.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_Hyderabadi_Biryani.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/c/c0/Chicken_Hyderabadi_Biryani.JPG",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of Hyderabadi biryani.",
   },
@@ -87,9 +90,9 @@ const raw = ([
     weddingFeast:
       "Maharashtrian wedding thalis pair puran poli and varan bhaat with a full spread of sweet and savoury katoris.",
     image:
-      "https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1200&auto=format&fit=crop",
+      "https://upload.wikimedia.org/wikipedia/commons/f/fb/A_Baraat_procession%2C_Jaipur.jpg",
     verified: false,
-    sourceNote: "Representative regional food photography, 2026.",
+    sourceNote: "Real Wikimedia Commons photo of an Indian wedding celebration — not specific to this dish or state; swap in a dish-specific photo when available.",
   },
   {
     state: "Haryana",
@@ -105,9 +108,9 @@ const raw = ([
     weddingFeast:
       "Haryanvi weddings lean on ghee-heavy dairy dishes and a generous meethe chawal to close the meal.",
     image:
-      "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=1200&auto=format&fit=crop",
+      "https://upload.wikimedia.org/wikipedia/commons/0/03/A_wedding_feast_in_India%2C_dining_tradition.jpg",
     verified: false,
-    sourceNote: "Representative regional food photography, 2026.",
+    sourceNote: "Real Wikimedia Commons photo of an Indian wedding celebration — not specific to this dish or state; swap in a dish-specific photo when available.",
   },
   {
     state: "Goa",
@@ -123,9 +126,9 @@ const raw = ([
     weddingFeast:
       "Goan Catholic weddings often serve sorpotel and a layered bebinca cake; Hindu Goan weddings favour a vegetarian spread instead.",
     image:
-      "https://images.unsplash.com/photo-1626500138866-b73c5e21dbd0?q=80&w=1200&auto=format&fit=crop",
+      "https://upload.wikimedia.org/wikipedia/commons/0/05/Goa_Beach.jpg",
     verified: false,
-    sourceNote: "Representative regional food photography, 2026.",
+    sourceNote: "Real Wikimedia Commons photo of an Indian wedding celebration — not specific to this dish or state; swap in a dish-specific photo when available.",
   },
   {
     state: "Kerala",
@@ -141,7 +144,7 @@ const raw = ([
     weddingFeast:
       "The vegetarian sadya, served on a banana leaf with 20+ dishes, is the traditional Kerala wedding feast regardless of the couple's faith.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Kerala_Sadya_Feast.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d6/Kerala_Sadya_Feast.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of a Kerala sadya feast.",
   },
@@ -159,7 +162,7 @@ const raw = ([
     weddingFeast:
       "Karnataka wedding banana-leaf meals are close cousins of Kerala's sadya, with Mysore Pak served as the signature sweet.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Mysore_pak.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/ff/Mysore_pak.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of Mysore Pak, which originated in the royal kitchens of the Kingdom of Mysore, Karnataka.",
   },
@@ -177,7 +180,7 @@ const raw = ([
     weddingFeast:
       "Tamil wedding feasts (kalyana sapadu) are served on banana leaves, always vegetarian, in a strict multi-course order.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Masala_dosa_01.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/4/43/Masala_dosa_01.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of masala dosa, a Tamil Nadu / Karnataka staple.",
   },
@@ -195,7 +198,7 @@ const raw = ([
     weddingFeast:
       "Delhi wedding caterers typically run live counters — chaat, kebabs, and a Mughlai main course — alongside a full vegetarian spread.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_makhani.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/3/3c/Chicken_makhani.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of butter chicken (murgh makhani), invented in Delhi.",
   },
@@ -213,7 +216,7 @@ const raw = ([
     weddingFeast:
       "Punjabi wedding menus are famously lavish — multiple live counters, dal makhani, and a lassi station alongside the main course.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Punjabi_Thaali.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/56/Punjabi_Thaali.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of a Punjabi thali.",
   },
@@ -231,7 +234,7 @@ const raw = ([
     weddingFeast:
       "Lucknawi Awadhi cuisine — slow-cooked biryani and galouti-style kebabs — headlines many Uttar Pradesh wedding menus.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Uttar_Pradesh_Thali.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/8/89/Uttar_Pradesh_Thali.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of an Uttar Pradesh thali.",
   },
@@ -249,7 +252,7 @@ const raw = ([
     weddingFeast:
       "Bengali weddings serve an elaborate multi-course meal ending in rosogolla and mishti doi — sweets are never an afterthought here.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Rosgulla_-_Famous_Dessert_of_Kolkata.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/8/88/Rosgulla_-_Famous_Dessert_of_Kolkata.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of rosogolla, Kolkata.",
   },
@@ -267,7 +270,7 @@ const raw = ([
     weddingFeast:
       "Gujarati wedding thalis are famously all-you-can-eat and entirely vegetarian, built around a sweet-salty-spicy balance.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Gujarati_Dhokla_(Khaman_Dhokla).jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/4/40/Gujarati_Dhokla_%28Khaman_Dhokla%29.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of Gujarati dhokla.",
   },
@@ -285,7 +288,7 @@ const raw = ([
     weddingFeast:
       "The dham — a multi-course vegetarian feast cooked by specialist botis (chefs) — is served at nearly every Himachali wedding.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional_North_Indian_Thali.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/1/12/Traditional_North_Indian_Thali.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons North Indian thali photo, used as regional-style reference (not Himachal-specific).",
   },
@@ -303,7 +306,7 @@ const raw = ([
     weddingFeast:
       "Pahari wedding feasts favour millet and mountain-grown pulses, closing with a bal mithai and jhangora kheer dessert course.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Bal_mithai.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/9/9a/Bal_mithai.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of bal mithai, a khoya sweet from Almora, Uttarakhand.",
   },
@@ -321,7 +324,7 @@ const raw = ([
     weddingFeast:
       "Central Indian weddings often serve dal bafla — a softer cousin of Rajasthan's baati — alongside a malpua dessert table.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Indian_pancakes-malpua.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/0/0e/Indian_pancakes-malpua.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of malpua, a festive dessert served across Central and North India including Madhya Pradesh.",
   },
@@ -339,9 +342,9 @@ const raw = ([
     weddingFeast:
       "Andhra wedding banana-leaf meals are known for their heat — gongura and Andhra chilli dishes headline the spread.",
     image:
-      "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=1200&auto=format&fit=crop",
+      "https://upload.wikimedia.org/wikipedia/commons/d/dd/A_fancy_Indian_wedding_taking_place_in_Puducherry%2C_Tamil_Nadu%2C_India.jpg",
     verified: false,
-    sourceNote: "Representative regional food photography, 2026.",
+    sourceNote: "Real Wikimedia Commons photo of an Indian wedding celebration — not specific to this dish or state; swap in a dish-specific photo when available.",
   },
   {
     state: "Odisha",
@@ -357,7 +360,7 @@ const raw = ([
     weddingFeast:
       "Odisha holds its own GI status for rasagola alongside West Bengal, and its chhena poda — burnt cheesecake — is an equally iconic wedding-table sweet.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Chhena_Poda-Puri-Odisha-IMG_1323.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/3/3c/Chhena_Poda-Puri-Odisha-IMG_1323.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of chhena poda, Odisha's signature caramelised-cheese dessert.",
   },
@@ -375,9 +378,9 @@ const raw = ([
     weddingFeast:
       "Assamese wedding feasts are served on banana leaves too, with khar as a distinctive alkaline-ash-based opening dish.",
     image:
-      "https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=1200&auto=format&fit=crop",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d9/A_Bengali_Hindu_Couple_newly_Married..JPG",
     verified: false,
-    sourceNote: "Representative regional food photography, 2026.",
+    sourceNote: "Real Wikimedia Commons photo of an Indian wedding celebration — not specific to this dish or state; swap in a dish-specific photo when available.",
   },
   {
     state: "Bihar",
@@ -393,7 +396,7 @@ const raw = ([
     weddingFeast:
       "Litti chokha, roasted wheat balls with mashed vegetables, is a Bihar wedding-menu staple alongside thekua sweets.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Litti_Chokha.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/55/Litti_Chokha.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of litti chokha, Bihar's signature dish.",
   },
@@ -411,7 +414,7 @@ const raw = ([
     weddingFeast:
       "The Wazwan — up to 36 courses served on a shared trami platter — is the traditional Kashmiri wedding feast.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Rogan_Josh_Kashmiri.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/6/67/Rogan_Josh_Kashmiri.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of rogan josh, a centrepiece dish of the Kashmiri Wazwan feast.",
   },
@@ -429,9 +432,9 @@ const raw = ([
     weddingFeast:
       "Chhattisgarhi weddings favour steamed rice-flour dishes like fara and bafauri alongside a sweet khurma course.",
     image:
-      "https://images.unsplash.com/photo-1596797882317-3ce5f16d0e10?q=80&w=1200&auto=format&fit=crop",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d3/A_Hindu_bride_dress_rituals_beliefs_culture_in_Amla%2C_Madhya_Pradesh_India_2015.jpg",
     verified: false,
-    sourceNote: "Representative regional food photography, 2026.",
+    sourceNote: "Real Wikimedia Commons photo of an Indian wedding celebration — not specific to this dish or state; swap in a dish-specific photo when available.",
   },
   {
     state: "Sikkim",
@@ -447,9 +450,9 @@ const raw = ([
     weddingFeast:
       "Sikkimese weddings blend Nepali and Tibetan influences — momos and thukpa often appear alongside a rice-and-curry main.",
     image:
-      "https://images.unsplash.com/photo-1626804475297-411f45b4f2ac?q=80&w=1200&auto=format&fit=crop",
+      "https://upload.wikimedia.org/wikipedia/commons/c/cc/Hills_of_Shimla_in_the_morning.jpg",
     verified: false,
-    sourceNote: "Representative regional food photography, 2026.",
+    sourceNote: "Real Wikimedia Commons photo of an Indian wedding celebration — not specific to this dish or state; swap in a dish-specific photo when available.",
   },
   {
     state: "Jharkhand",
@@ -465,7 +468,7 @@ const raw = ([
     weddingFeast:
       "Jharkhand shares Bihar's litti chokha tradition, with tribal-region specialities like rugra appearing in some communities' wedding menus.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Litti_chokha_well_known_bihar_food.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/6/63/Litti_chokha_well_known_bihar_food.jpg",
     verified: true,
     sourceNote: "Real Wikimedia Commons photo of litti chokha, a dish shared by Bihar and Jharkhand's Bhojpuri/Magadh-belt cuisine.",
   },

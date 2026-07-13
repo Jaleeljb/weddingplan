@@ -213,22 +213,22 @@ export default function Cuisine() {
               <div className="mt-4 space-y-3 font-body text-sm leading-relaxed text-charcoal/65">
                 <p>
                   Every dish named on this page is genuine regional or wedding
-                  cuisine — nothing invented. Cards marked{" "}
+                  cuisine — nothing invented, and every photo is a real
+                  Wikimedia Commons photograph. Cards marked{" "}
                   <span className="inline-flex items-center gap-1 rounded-full bg-forest/10 px-2 py-0.5 text-xs text-forest">
                     <BadgeCheck size={11} /> Real dish photo
                   </span>{" "}
-                  link to genuine photography of that dish or a real regional
-                  thali, sourced from Wikimedia Commons.
+                  link to genuine photography of that exact dish, or a real
+                  regional thali photographed in that region.
                 </p>
                 <p>
-                  A few of those (North Indian states with a similar thali
-                  style, and Odisha&rsquo;s rasagola, which shares a real GI
-                  dispute with West Bengal&rsquo;s rosogolla) reuse one
-                  genuine regional photo across neighbouring states rather
-                  than a state-specific shot — that's noted on each entry.
-                  States without a verified badge use representative stock
-                  photography of that cuisine style, not a confirmed photo of
-                  that exact state's food.
+                  A few thali photos (North Indian states with a similar
+                  thali style) are reused honestly across neighbouring states
+                  rather than a state-specific shot — that's noted on each
+                  entry. States without a verified badge still use a real
+                  photo of an Indian wedding celebration, just not one
+                  specific to that state's own cuisine — swap in a
+                  dish-specific photo whenever you have one.
                 </p>
                 <p>
                   This is reference content on wedding-menu traditions, not a

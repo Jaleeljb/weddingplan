@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import Reveal from "./Reveal";
 import VineDivider from "./VineDivider";
-import AreaVisual from "./AreaVisual";
 import { areas, regions, formatINR, type Region } from "@/data/indiaVenues";
 
 export default function Venues() {
@@ -141,37 +140,23 @@ export default function Venues() {
                 className="group relative flex flex-col overflow-hidden rounded-3xl border border-line/70 bg-white shadow-card card-lift"
               >
                 <div className="relative h-52 w-full overflow-hidden">
-                  {area.image ? (
-                    <Image
-                      src={area.image}
-                      alt={area.area}
-                      fill
-                      unoptimized
-                      className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 transition-transform duration-[1.2s] ease-out group-hover:scale-110">
-                      <AreaVisual seed={area.id} label={area.area} />
-                    </div>
-                  )}
+                  <Image
+                    src={area.image}
+                    alt={area.area}
+                    fill
+                    unoptimized
+                    className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-dark/70 via-transparent to-transparent" />
                   <span className="absolute left-4 top-4 rounded-full bg-ivory/90 px-3 py-1 font-body text-[10px] uppercase tracking-wider text-forest">
                     {area.tier}
                   </span>
-                  <div className="absolute right-4 top-4 flex flex-col items-end gap-1.5">
-                    {area.verified && (
-                      <span className="flex items-center gap-1 rounded-full bg-forest/90 px-2.5 py-1 font-body text-[10px] uppercase tracking-wider text-ivory">
-                        <BadgeCheck size={12} />
-                        Verified pricing
-                      </span>
-                    )}
-                    {area.image && (
-                      <span className="flex items-center gap-1 rounded-full bg-gold/90 px-2.5 py-1 font-body text-[10px] uppercase tracking-wider text-forest-dark">
-                        <BadgeCheck size={12} />
-                        Real photo
-                      </span>
-                    )}
-                  </div>
+                  {area.verified && (
+                    <span className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-forest/90 px-2.5 py-1 font-body text-[10px] uppercase tracking-wider text-ivory">
+                      <BadgeCheck size={12} />
+                      Verified pricing
+                    </span>
+                  )}
                   <div className="absolute inset-x-0 bottom-0 p-4">
                     <p className="flex items-center gap-1.5 font-body text-xs text-ivory/85">
                       <MapPin size={12} />
@@ -296,16 +281,19 @@ export default function Venues() {
                   a category-level estimate.
                 </p>
                 <p>
-                  Photography: we never reuse one stock photo across
-                  multiple areas. Only the 3 areas marked{" "}
-                  <span className="inline-flex items-center gap-1 rounded-full bg-gold/20 px-2 py-0.5 text-xs text-gold-dark">
-                    <BadgeCheck size={11} /> Real photo
+                  Photography: every area shows a real, working photo — none
+                  are generated or invented. The areas marked{" "}
+                  <span className="inline-flex items-center gap-1 rounded-full bg-forest/10 px-2 py-0.5 text-xs text-forest">
+                    <BadgeCheck size={11} /> Verified pricing
                   </span>{" "}
-                  (Jaipur, Hyderabad, Mumbai) show a genuine photo of that
-                  exact property. Every other area instead gets its own
-                  uniquely generated visual rather than a shared regional
-                  stock photo — so no two area cards ever look the same, and
-                  none falsely implies it's a photo of that specific venue.
+                  (Jaipur, Hyderabad, Mumbai) and Goa&rsquo;s 5 areas each show
+                  a genuine photo of that exact property or beach. Every other
+                  area shows a real Wikimedia Commons photo representative of
+                  its tier (e.g. a real Rajasthan palace wedding photo for
+                  Heritage Destination areas, a real Kerala backwaters photo
+                  for Kerala Backwater areas) — shared across areas of the
+                  same tier where we don&rsquo;t yet have a unique photo for
+                  that specific place.
                 </p>
                 <p>
                   Treat these as planning ranges, not quotes — always confirm
