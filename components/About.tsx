@@ -11,41 +11,6 @@ const stats = [
   { value: "100%", label: "Present on the Day" },
 ];
 
-const team = [
-  {
-    id: "team-priya-menon",
-    name: "Priya Menon",
-    role: "Founder & Lead Planner",
-    bio: "Sets the vision for every wedding and leads the couple relationship start to finish.",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    id: "team-arjun-rao",
-    name: "Arjun Rao",
-    role: "Creative & Décor Director",
-    bio: "Translates each couple's story into palette, florals, and every styled detail.",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    id: "team-fatima-shaikh",
-    name: "Fatima Shaikh",
-    role: "Logistics & Vendor Relations",
-    bio: "Runs venue bookings, vendor contracts, and the master timeline behind the scenes.",
-    image:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    id: "team-devika-nair",
-    name: "Devika Nair",
-    role: "Client Experience Lead",
-    bio: "Your first call and last text — keeps every couple calm from booking to send-off.",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
-  },
-];
-
 export default function About() {
   return (
     <section id="about" className="relative bg-ivory py-28 md:py-36">
@@ -106,44 +71,6 @@ export default function About() {
               ))}
             </div>
           </Reveal>
-        </div>
-      </div>
-
-      <div className="mx-auto mt-24 max-w-6xl px-6">
-        <Reveal className="mx-auto max-w-xl text-center">
-          <p className="eyebrow">The People Behind It</p>
-          <h3 className="mt-4 font-display text-3xl text-forest md:text-4xl">
-            Meet the team
-          </h3>
-        </Reveal>
-
-        <div className="mt-14 grid grid-cols-2 gap-6 lg:grid-cols-4">
-          {team.map((member, i) => (
-            <Reveal key={member.id} delay={(i % 4) * 0.1}>
-              <div
-                id={member.id}
-                className="group scroll-mt-28 text-center"
-              >
-                <div className="relative mx-auto aspect-square w-full max-w-[180px] overflow-hidden rounded-full shadow-card">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
-                  />
-                </div>
-                <h4 className="mt-5 font-display text-xl text-forest">
-                  {member.name}
-                </h4>
-                <p className="mt-1 font-body text-xs uppercase tracking-wide text-gold-dark">
-                  {member.role}
-                </p>
-                <p className="mt-3 font-body text-sm leading-relaxed text-charcoal/60">
-                  {member.bio}
-                </p>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </div>
       <VineDivider />
